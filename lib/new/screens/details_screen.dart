@@ -15,15 +15,15 @@ class DetailsScreen extends StatelessWidget {
     String withoutHtmlTags = input.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), '');
 
     // Keep only Arabic characters, spaces, and common punctuation
-    String arabicTextOnly = withoutHtmlTags.replaceAll(RegExp(r'[^\u0600-\u06FF\s،؛؟.!-]'), '');
+    String arabicTextOnly = withoutHtmlTags.replaceAll(RegExp(r'[^\u0600-\u06FF\s،؛؟.!-*0-9]'), '');
 
     // Remove specific strings
     arabicTextOnly = arabicTextOnly.replaceAll("الاسم بالكامل", "");
     arabicTextOnly = arabicTextOnly.replaceAll("البريد الالكتروني", "");
     arabicTextOnly = arabicTextOnly.replaceAll("رقم الموبايل", "");
     arabicTextOnly = arabicTextOnly.replaceAll("الخدمة المطلوبة اختياري", "");
-    arabicTextOnly = arabicTextOnly.replaceAll("الاسم", "");
-    arabicTextOnly = arabicTextOnly.replaceAll("وصف الطلب", "");
+    arabicTextOnly = arabicTextOnly.replaceAll(" الاسم ", "");
+    arabicTextOnly = arabicTextOnly.replaceAll(" وصف الطلب ", "");
 
     arabicTextOnly = arabicTextOnly.replaceAll(RegExp(r'wpforms[^ ]* '), '');
     return arabicTextOnly;
@@ -44,11 +44,13 @@ class DetailsScreen extends StatelessWidget {
     String htmlText = parse(page.content).body!.text;
     htmlText = extractArabicText(htmlText);
 
+    String cleanedTitle = page.title.replaceAll(RegExp(r'&#8211;|;'), '');
+
 
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(page.title),
+        title: Text(cleanedTitle),
         centerTitle: true,
       ),
       body: SafeArea(

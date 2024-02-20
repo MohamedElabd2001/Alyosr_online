@@ -7,12 +7,14 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class home_page extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
-  _home_pageState createState() => _home_pageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _home_pageState extends State<home_page> {
+class _HomeScreenState extends State<HomeScreen> {
   late List<Map<String, dynamic>> categories;
   late bool isLoading;
 

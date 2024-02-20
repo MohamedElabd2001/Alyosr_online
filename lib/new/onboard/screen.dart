@@ -93,7 +93,7 @@ class OnboardingScreen extends StatelessWidget {
                         if (isLast) {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                              builder: (context) => home_page(),
+                              builder: (context) => HomeScreen(),
                             ),
                           );
 /*Get.off(()=> home_page());*/
